@@ -50,7 +50,7 @@ kramdown:
 uyan_username: 2130510
 
 # jiathis settings - Share plugin
-jiathis_username: 2130510
+jiathis_share: true
 
 # Disqus settings Tip: Net Forbidden
 #disqus_username: Zhkblog
