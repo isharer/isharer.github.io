@@ -253,10 +253,10 @@ layout: default
 <script type="text/javascript">
 	var jiathis_config={
 		data_track_clickback:true,
-		url:{{site.url}}{{site.baseurl}}{{page.url}},
-		summary:{{ content | strip_html | truncate:80 }} | {{ site.SEOTitle }},
-		title:{{ page.title }},
-		pic:{{ site.url }}{{site.baseurl}}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %},
+		url:'{{site.url}}{{site.baseurl}}{{page.url}}',
+		summary:'{{ content | strip_html | truncate:80 }} | {{ site.SEOTitle }}',
+		title:'{{ page.title }}',
+		pic:'{{ site.url }}{{site.baseurl}}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}',
 		shortUrl:false,
 		hideMore:true
 	}
