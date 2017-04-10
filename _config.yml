@@ -47,10 +47,10 @@ kramdown:
 
 
 # Uyan settings
-#uyan_username: 2130510
+uyan_username: 2130510
 
 # Disqus settings
-disqus_username: Zhkblog
+#disqus_username: Zhkblog
 
 # Duoshuo settings Tip: will shutdown 2017-06-1
 #duoshuo_username: _your_disqus_short_name_
