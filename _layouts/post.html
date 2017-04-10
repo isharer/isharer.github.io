@@ -132,7 +132,12 @@ layout: default
 				
 				{% if site.jiathis_share && site.jiathis_username %}
 				<!-- JiaThis Share BEGIN -->
-					<div class="jiathis_style">
+					<div class="jiathis_style"
+					style="text-align: right"
+                    data-title="{{page.title}}"
+                    data-url="{{site.url}}{{site.baseurl}}{{page.url}}"
+                    data-images="{{ site.url }}{{site.baseurl}}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}"
+                    data-content="{{ content | strip_html | truncate:80 }} | {{ site.SEOTitle }} ">
 					<ul>
 					<li><span class="jiathis_txt">分享到：</span></li>
 					<li><a class="jiathis_button_weixin">微信</a></li>
@@ -253,10 +258,10 @@ layout: default
 <script type="text/javascript">
 	var jiathis_config={
 		data_track_clickback:true,
-		url:'{{site.url}}{{site.baseurl}}{{page.url}}',
-		summary:'{{ content | strip_html | truncate:80 }} | {{ site.SEOTitle }}',
-		title:'{{ page.title }}',
-		pic:'{{ site.url }}{{site.baseurl}}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}',
+		url:$('.jiathis_style').data('url'),
+		summary:$('.jiathis_style').data('content'),
+		title:$('.jiathis_style').data('title'),
+		pic:$('.jiathis_style').data('images'),
 		shortUrl:false,
 		hideMore:true
 	}
