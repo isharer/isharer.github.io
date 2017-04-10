@@ -138,14 +138,22 @@ layout: default
                     data-url="{{site.url}}{{site.baseurl}}{{page.url}}"
                     data-images="{{ site.url }}{{site.baseurl}}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}"
                     data-content="{{ content | strip_html | truncate:80 }} | {{ site.SEOTitle }} ">
-					<ul>
-					<li><span class="jiathis_txt">分享到：</span></li>
+					<style>
+						.jiathis_style_ul{
+							list-style-type: none;
+							padding-bottom: 20px;
+						}
+					    .jiathis_style_ul,jiathis_style_ul li{
+							color: #999;
+						}
+					</style>
+					<ul class = "jiathis_style_ul">
+					<li><span class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis">分享到：</span></li>
 					<li><a class="jiathis_button_weixin">微信</a></li>
 					<li><a class="jiathis_button_tsina">微博</a></li>
 					<li><a class="jiathis_button_douban">豆瓣</a></li>
-					<li><a href="http://www.jiathis.com/share?uid={{site.jiathis_username}}" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a></li>
 					</ul>
-					
+					<hr>
 					</div>
 				<!-- JiaThis Share END -->
 
