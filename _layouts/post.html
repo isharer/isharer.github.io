@@ -130,6 +130,21 @@ layout: default
                 <!-- disqus 评论框 end -->
                 {% endif %}
 				
+				{% if site.jiathis_username %}
+				<!-- JiaThis Share BEGIN -->
+					<div class="jiathis_style"><span class="jiathis_txt">分享到：</span>
+					<a class="jiathis_button_weixin"></a>
+					<a class="jiathis_button_cqq"></a>
+					<a class="jiathis_button_tsina"></a>
+					<a class="jiathis_button_ydnote"></a>
+					<a class="jiathis_button_tqq"></a>
+					<a class="jiathis_button_fb"></a>
+					<a href="http://www.jiathis.com/share?uid={{site.jiathis_username}}" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+					<a class="jiathis_counter_style"></a>
+					</div>
+				<!-- JiaThis Share END -->
+                {% endif %}
+				
 				{% if site.uyan_username %}
 				<!-- UY 评论框 BEGIN -->
 				<div id="uyan_frame"></div>
@@ -230,6 +245,28 @@ layout: default
     })();
 </script>
 <!-- disqus 公共JS代码 end -->
+{% endif %}
+
+{% if site.jiathis_username %}
+<!-- jiathis Share 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+	var jiathis_config={
+		data_track_clickback:true,
+		summary:"",
+		shortUrl:true,
+		hideMore:false
+	}
+
+    var jiathis_shortname = "{{site.jiathis_username}}";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//v3.jiathis.com/code/jia.js?uid=' + jiathis_shortname;
+        dsq.charset = "utf-8";
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- jiathis Share 公共JS代码 end -->
 {% endif %}
 
 {% if site.uyan_username %}

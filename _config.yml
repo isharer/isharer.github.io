@@ -46,8 +46,11 @@ kramdown:
   input: GFM                            # use Github Flavored Markdown !important
 
 
-# Uyan settings
+# Uyan settings - comment plugin
 uyan_username: 2130510
+
+# jiathis settings - Share plugin
+jiathis_username: 2130510
 
 # Disqus settings Tip: Net Forbidden
 #disqus_username: Zhkblog
