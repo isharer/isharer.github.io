@@ -129,6 +129,12 @@ layout: default
                 </div>
                 <!-- disqus 评论框 end -->
                 {% endif %}
+				
+				{% if site.uyan_username %}
+				<!-- UY 评论框 BEGIN -->
+				<div id="uyan_frame"></div>
+				<!-- UY 评论框 END -->
+                {% endif %}
 
             </div>  
 
@@ -226,6 +232,20 @@ layout: default
 <!-- disqus 公共JS代码 end -->
 {% endif %}
 
+{% if site.disqus_username %}
+<!-- uyan 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var uyan_shortname = "{{site.uyan_username}}";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'v2.uyan.cc/code/uyan.js?uid=' + uyan_shortname;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- uyan 公共JS代码 end -->
+{% endif %}
 
 {% if site.anchorjs %}
 <!-- async load function -->
