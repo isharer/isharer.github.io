@@ -256,12 +256,15 @@ layout: default
 {% if site.jiathis_username %}
 <!-- jiathis Share 公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
+
+	var jiathis_data = document.getElementsByClassName('jiathis_style')[0];
+	
 	var jiathis_config={
 		data_track_clickback:true,
-		url:$('.jiathis_style').data('url'),
-		summary:$('.jiathis_style').data('content'),
-		title:$('.jiathis_style').data('title'),
-		pic:$('.jiathis_style').data('images'),
+		url: jiathis_data.data-url,
+		summary: jiathis_data.data-content,
+		title: jiathis_data.data-title,
+		pic: jiathis_data.data-images,
 		shortUrl:false,
 		hideMore:true
 	}
