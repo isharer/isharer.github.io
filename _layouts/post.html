@@ -141,14 +141,20 @@ layout: default
 					<style>
 						.jiathis_style_ul{
 							list-style-type: none;
-							padding-bottom: 20px;
+							padding-bottom: 20px !important;
 						}
-					    .jiathis_style_ul,jiathis_style_ul li{
+					    .jiathis_style_ul,.jiathis_style_ul li{
 							color: #999;
+						}
+					
+						.jiathis_ico{
+							background-image:url(//static.duoshuo.com/images/service-icons-color.png?v=2);
+							background-position: 0 -256px;
+							margin-left: 0;
 						}
 					</style>
 					<ul class = "jiathis_style_ul">
-					<li><span class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis">分享到：</span></li>
+					<li><a href="javascript:void(0)" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis jiathis_ico">分享到：</a></li>
 					<li><a class="jiathis_button_weixin">微信</a></li>
 					<li><a class="jiathis_button_tsina">微博</a></li>
 					<li><a class="jiathis_button_douban">豆瓣</a></li>
