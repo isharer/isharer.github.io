@@ -210,6 +210,6 @@ D:\资料\培训\软件工具>tree /f
 	
 基本实现思路如下图，
 
-![基本思路](./img/in-post/dos-for.png)
+![基本思路](/img/in-post/dos-for.png)
 
 
