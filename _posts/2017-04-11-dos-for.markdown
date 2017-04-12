@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "DOS命令浅尝"
-subtitle:   " \"DOS命令之For命令浅尝\""
+title:      "DOS命令之For命令浅尝"
+subtitle:   " \"通过一个简单的实例应用学习for命令\""
 date:       2017-04-11 12:00:00
 author:     "Zhk"
 header-img: "img/post-bg-2017.jpg"
@@ -159,7 +159,7 @@ C:\>for /? > dos_for_help.txt
 
 - 目标
 
-在文本文件中罗列出文件目录清单，当然，我们可以使用tree命令很简单就能实现。这里我们为了学习for循环就不采用这种方式了。首先，我们可以使用tree命令看看我们最终需要的效果清单，比如，我要获取D:\资料\培训\软件工具目录底下的文件清单，我们就可以这样：
+在文本文件中罗列出文件目录清单，当然，我们可以使用tree命令很简单就能实现。这里我们为了学习for循环就不采用这种方式了。首先，我们可以使用tree命令看看我们最终需要的效果清单，比如，我要获取 “D:\资料\培训\软件工具” 目录底下的文件清单，我们就可以这样：
 
 ```
 D:\资料\培训\软件工具>tree /f
@@ -212,4 +212,105 @@ D:\资料\培训\软件工具>tree /f
 
 ![基本思路](/img/in-post/dos-for.png)
 
+具体做法：
 
+首先，我们看第一条扩展命令参数 /D，
+
+	FOR /D %variable IN (set) DO command [command-parameters]
+
+    如果集中包含通配符，则指定与目录名匹配，而不与文件名匹配。
+
+显然，我们需要不仅仅遍历到目录文件夹，同时需要遍历目录底下的文件。
+
+再看下面/R，
+	
+	FOR /R [[drive:]path] %variable IN (set) DO command [command-parameters]
+
+    检查以 [drive:]path 为根的目录树，指向每个目录中的 FOR 语句。
+    如果在 /R 后没有指定目录规范，则使用当前目录。如果集仅为一个单点(.)字符，
+    则枚举该目录树。
+
+通过说明得知，该扩展参数可以遍历到指定根目录的所有目录，什么意思比如， /R D:/ 就可以遍历D盘所有目录文件。
+
+
+因此使用如下命令便可罗列所有文件清单：
+	
+	D:\资料\培训\软件工具>for /r %i in (*.*) do @echo %i
+
+
+结果如下：
+
+	D:\资料\培训\软件工具\1.txt
+	D:\资料\培训\软件工具\soft_list.txt
+	D:\资料\培训\软件工具\IDE\ideaIU-2017.1.exe
+	D:\资料\培训\软件工具\IDE\ideaIU-2017.1注册码.txt
+	D:\资料\培训\软件工具\JDK\jdk-8u121-windows-x64-demos.zip
+	D:\资料\培训\软件工具\JDK\jdk-8u121-windows-x64_8.0.1210.13.exe
+
+更进一步， 我们可以先使用CALL自行批处理自调，实现带变量的循环调用。什么意思呢? 先看实现：
+
+	::get dirlist
+	for /d %%i in (*) do (
+	::write dirpath
+	echo %%i >> 1.txt 
+	::call this command tag :aa with paramter
+	call :aa %%i
+	)
+	:aa
+	::in dirlist set catch file list 
+	if not %1 == 'ECHO 处于打开状态' 
+	for /r "%cd%\%1" %%I in (*.*) do (
+	::call this command tag :bb with paramter
+	call :bb %%I %cd%\%1
+	)
+	:bb
+	::if not %1 == 'ECHO 处于打开状态'
+	set a=%1
+	set b=%2
+	::repleace dirpath with `---`
+	call set c=%%a:%b%=----------------%%
+	::write file list
+	echo %c%>>1.txt
+
+解释下代码，从注释中也应该能看清楚命令逻辑。 上面的批处理主要涉及到echo、::、：、call、set以及字符串处理的相关命令操作。我们这里只是为了说明for命令，其他有兴趣的可以参考系统文档。第一个for命令就是上例中我们获取到的目录结果集。第二个for是获取该目录下的文件列表。可能有人发现这俩for循环是通过自掉参数传递变量的，因为for条件列表不可以进行变量的直接引用。
+
+最后，上效果：
+
+	|IDE  
+	|----------------\ideaIU-2017.1.exe
+	|----------------\ideaIU-2017.1注册码.txt
+	|----------------\ideaIU-2017.1注册码.txt
+	|JDK  
+	|----------------\jdk-8u121-windows-x64-demos.zip
+	|----------------\jdk-8u121-windows-x64_8.0.1210.13.exe
+	|----------------\jdk-8u121-windows-x64_8.0.1210.13.exe
+	|数据库及管理工具  
+	|----------------\HeidiSQL_9.4.0.5125_Setup.exe
+	|----------------\mysql-5.7.17.msi
+	|----------------\navicat112_mysql_cs_x64.exe
+	|----------------\navicat112_mysql_cs_x64.exe
+	|服务器  
+	|----------------\apache-tomcat-9.0.0.M19-windows-x64.zip
+	|----------------\nginx-1.11.13.zip
+	|----------------\nginx-1.11.13.zip
+	|构建工具  
+	|----------------\apache-maven-3.3.9-bin.zip
+	|----------------\apache-maven-3.3.9-bin.zip
+	|版本控制工具  
+	|----------------\Git_2.12_64.exe
+	|----------------\Git_2.12_64.exe
+	|编辑器  
+	|----------------\gvim80.exe
+	|----------------\markdownpad2-setup.exe
+	|----------------\markdownpad2-setup激活.txt
+	|----------------\markdownpad2-WIN10预览失败时安装.exe
+	|----------------\npp_7.3.3_Installer.exe
+	|----------------\npp_7.3.3_Installer.exe
+	|调试工具  
+	|----------------\fiddler4_4.6.2.0_setup.1453708442.exe
+	|----------------\Postman-win64-4.10.7-Setup.exe
+	|----------------\Postman-win64-4.10.7-Setup.exe
+
+可以看到已经到达预期效果，甚至说再完善之后，完全可以达到tree展示样式，有时间的话，后面我们再完善。
+
+至此，有关for命令的基本用法就结合示例完成了，如果有幸被各位看到，有什么好的建议或者问题欢迎斧正。：）
