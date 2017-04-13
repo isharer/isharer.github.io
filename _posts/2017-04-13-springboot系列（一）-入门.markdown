@@ -30,9 +30,9 @@ Springboot作为一个升级版的Spring，它很容易创建一个独立运行�
 
 ### 系统要求 ###
 
-	目前Spring1.5版本，需要spring Framwork 4.3.6以上版本 及jdk8，虽然你也可以使用jdk6，7 但我们推荐使用jdk8
-	
-	IDE使用Intellij Idea
+目前Spring1.5版本，需要spring Framwork 4.3.6以上版本 及jdk8，虽然你也可以使用jdk6，7 但我们推荐使用jdk8
+
+IDE使用Intellij Idea
 
 ### 快速入门 ###
 
@@ -61,4 +61,4 @@ Springboot作为一个升级版的Spring，它很容易创建一个独立运行�
 
 如下图
 
-![Spring Initializr初始化项目代码]("\img\in-post\springboot系列(一)-spring-initializr.png")
+![Spring Initializr初始化项目代码](\img\in-post\springboot系列(一)-spring-initializr.png)
