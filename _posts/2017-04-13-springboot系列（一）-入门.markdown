@@ -286,3 +286,72 @@ Spring boot提供了一些“开箱即用的”依赖模块，都是以srping-bo
 
 - 讲项目打包成一个可执行jar包，包括打入依赖，并添加描述文件，描述文件内容允许你使用 java jar 运行你的项目
 
+**SpringBoot入口类**
+
+	package com.nptever.zhk;
+	
+	import org.springframework.boot.SpringApplication;
+	import org.springframework.boot.autoconfigure.SpringBootApplication;
+	
+	@SpringBootApplication
+	public class SpringBootInitApplication {
+	
+		public static void main(String[] args) {
+			SpringApplication.run(SpringBootInitApplication.class, args);
+		}
+	}
+    
+SpringBootInitApplication是关键的启动类，是整个SPringboot应用的程序入口
+
+
+
+> @SpringBootApplication
+
+是一个核心的注解，主要是开启自动配置
+> main() 方法是启动的主方法
+
+**启动**
+
+为了简化演示，这里不再创建单独的Controller，直接在启动类中添加一个Rest接口
+
+	
+	package com.nptever.zhk;
+	
+	import org.springframework.boot.SpringApplication;
+	import org.springframework.boot.autoconfigure.SpringBootApplication;
+	import org.springframework.web.bind.annotation.RequestMapping;
+	import org.springframework.web.bind.annotation.RestController;
+	
+	@RestController
+	@SpringBootApplication
+	public class SpringBootInitApplication {
+	
+		@RequestMapping(value="/")
+		public String index(){
+			return "Hello Word";
+		}
+		
+		public static void main(String[] args) {
+			SpringApplication.run(SpringBootInitApplication.class, args);
+		}
+	}
+
+> @RestController 注解等价于 @Controller + @RequestBody 注解组合，使用这个注解的类里面的方法都可以返回json格式数据
+
+启动方式
+
+- 可以使用mvn命令 mvn spring-boot:run 在命令行里面运行
+- 也可以使用mvn package打包之后 以运行可执行jar包的方法运行 java -jar xxx.jar -Dxxxx 
+
+默认启动端口8080 ，可以在application.properties文件中添加server.port=xxx配置修改，或者jar运行时指定参数进行覆盖 java -jar xxx.jar -Dserver.port=xxx
+
+### 总结 ###
+
+上面写了那么多，其实总结起来主要就是一下3点
+
+- Spring boot项目初始化
+- Spring Boot的父依赖 
+- 起步依赖 spring-boot-start-xxx的概念
+- 入口类作用
+
+后续还会继续跟进更新，谢谢各位看官：）
