@@ -1,0 +1,15 @@
+---
+layout:     post
+title:      "帮助文档归纳网站随笔"
+subtitle:   " \"看到一个特别不错的帮助文档归纳网站，记下来备忘\""
+date:       2017-04-20 18:30:28
+author:     "Zhk"
+header-img: "img/post-bg-2017.jpg"
+catalog: true
+tags:
+    - 随笔
+---
+
+## RDFREE.COM##
+
+RDFREE.COM是无意间发现的一个技术帮助文档中文翻译归纳整理中心，覆盖面很广，既包含与语言无关的技术比如MYSQL、NOSQL、数据库、大数据、编程艺术等文档干活，同时包含技术相关文档资料的翻译，以防忘记在此记录。
